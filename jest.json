@@ -1,0 +1,20 @@
+{
+  "collectCoverageFrom": ["client/src/**/*.js", "server/**/*.js"],
+  "setupFiles": ["<rootDir>/client/config/polyfills.js"],
+  "testMatch": [
+    "<rootDir>/client/src/**/?(*.)(spec|test).js",
+    "<rootDir>/server/**/?(*.)(spec|test).js"
+  ],
+  "testEnvironment": "node",
+  "testURL": "http://localhost",
+  "transform": {
+    "^.+\\.(js|jsx)$": "babel-jest",
+    "^.+\\.css$": "jest-css",
+    "^(?!.*\\.(js|jsx|css|json)$)": "jest-file"
+  },
+  "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web"
+  },
+  "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx"]
+}
