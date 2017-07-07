@@ -21,6 +21,7 @@ class App extends Component {
   }
 
   render () {
+    let earnedPA = this.state.savingsAmount * (this.state.interestRate / 100)
     return (
       <form className="container">
         <Settings
@@ -29,7 +30,7 @@ class App extends Component {
           currencies={this.state.currencies}
           exchangeRate={this.state.exchangeRate}
         />
-        <Results />
+        <Results earnedPA={earnedPA} />
       </form>
     )
   }
