@@ -1,23 +1,12 @@
 import React, { Component } from 'react'
 import { Results, Settings } from '../components'
+import initialState from '../constants/initialState'
 
 class App extends Component {
-  state = {
-    interestRate: 0,
-    savingsAmount: 0,
-    currencies: [
-      {
-        id: 'GBP',
-        symbol: '£',
-        rate: 1
-      },
-      {
-        id: 'USD',
-        symbol: '$',
-        rate: 1.293
-      }
-    ],
-    selectedCurrencyId: 'GBP'
+  constructor (props) {
+    super(props)
+    this.state = Object.assign({}, initialState)
+    this.isValid = this.isValid.bind(this)
   }
 
   isValid (newValue) {
