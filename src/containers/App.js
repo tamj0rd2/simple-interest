@@ -20,6 +20,17 @@ class App extends Component {
     selectedCurrencyId: 'GBP'
   }
 
+  isValid (newValue) {
+    // returns true if the value is a number/float
+    return /^\d+$/.test(newValue) || newValue === ''
+  }
+
+  savingsAmountChange = e => {
+    if (this.isValid(e.target.value)) {
+      this.setState({ savingsAmount: parseFloat(e.target.value) || 0 })
+    }
+  }
+
   render () {
     let earnedPA = this.state.savingsAmount * (this.state.interestRate / 100)
     let selectedCurrency = this.state.currencies.find(
@@ -33,6 +44,7 @@ class App extends Component {
           savingsAmount={this.state.savingsAmount}
           currencies={this.state.currencies}
           selectedCurrency={selectedCurrency}
+          savingsAmountChange={this.savingsAmountChange}
         />
         <Results earnedPA={earnedPA} selectedCurrency={selectedCurrency} />
       </form>

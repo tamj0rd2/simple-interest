@@ -19,6 +19,7 @@ const CurrencyGroup = props => {
         <FormControl
           type="text"
           value={props.value}
+          onChange={props.onChange}
           readOnly={props.readOnly}
         />
         <InputGroup.Addon>
@@ -36,11 +37,12 @@ const CurrencyGroup = props => {
 
 CurrencyGroup.propTypes = {
   value: PropTypes.number.isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+  exchangeRate: PropTypes.number.isRequired,
   scope: PropTypes.string,
   labelText: PropTypes.string,
   readOnly: PropTypes.bool,
-  exchangeRate: PropTypes.number.isRequired,
-  currencySymbol: PropTypes.string.isRequired
+  onChange: PropTypes.func
 }
 
 export default CurrencyGroup

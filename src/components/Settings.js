@@ -47,6 +47,7 @@ const Settings = props => {
         value={props.savingsAmount}
         exchangeRate={props.selectedCurrency.rate}
         currencySymbol={props.selectedCurrency.symbol}
+        onChange={props.savingsAmountChange}
       />
     </div>
   )
@@ -56,7 +57,8 @@ Settings.propTypes = {
   interestRate: PropTypes.number.isRequired,
   savingsAmount: PropTypes.number.isRequired,
   currencies: PropTypes.array.isRequired,
-  selectedCurrency: PropTypes.object.isRequired
+  selectedCurrency: PropTypes.object.isRequired,
+  savingsAmountChange: PropTypes.func.isRequired
 }
 
 export default Settings
