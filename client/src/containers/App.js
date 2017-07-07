@@ -9,6 +9,12 @@ class App extends Component {
     this.isValid = this.isValid.bind(this)
   }
 
+  componentDidMount () {
+    return fetch('/api/currencies').then(res => res.json()).then(json => {
+      this.setState({ currencies: json.data, selectedCurrency: json.data[0] })
+    })
+  }
+
   isValid (newValue) {
     // returns true if the value is a number/float
     return /^\d+$/.test(newValue) || newValue === ''
@@ -27,14 +33,14 @@ class App extends Component {
   }
 
   currencyOptionChange = e => {
-    this.setState({ selectedCurrencyId: e.target.value })
+    let selectedCurrency = this.state.currencies.find(
+      obj => obj.id === e.target.value
+    )
+    this.setState({ selectedCurrency: selectedCurrency })
   }
 
   render () {
     let earnedPA = this.state.savingsAmount * (this.state.interestRate / 100)
-    let selectedCurrency = this.state.currencies.find(
-      currency => currency.id === this.state.selectedCurrencyId
-    )
 
     return (
       <form className="container">
@@ -42,12 +48,15 @@ class App extends Component {
           interestRate={this.state.interestRate}
           savingsAmount={this.state.savingsAmount}
           currencies={this.state.currencies}
-          selectedCurrency={selectedCurrency}
+          selectedCurrency={this.state.selectedCurrency}
           savingsAmountChange={this.savingsAmountChange}
           interestRateChange={this.interestRateChange}
           currencyOptionChange={this.currencyOptionChange}
         />
-        <Results earnedPA={earnedPA} selectedCurrency={selectedCurrency} />
+        <Results
+          earnedPA={earnedPA}
+          selectedCurrency={this.state.selectedCurrency}
+        />
       </form>
     )
   }

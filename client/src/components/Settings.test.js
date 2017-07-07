@@ -1,6 +1,6 @@
 import React from 'react'
 import Settings from './Settings'
-import initialState from '../constants/initialState'
+import { currenciesMock } from '../constants/initialState'
 
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
@@ -11,8 +11,8 @@ chai.use(dirtyChai)
 const props = {
   interestRate: 10,
   savingsAmount: 1000,
-  currencies: [].concat(initialState.currencies),
-  selectedCurrency: initialState.currencies[0],
+  currencies: [].concat(currenciesMock),
+  selectedCurrency: currenciesMock[0],
   interestRateChange: sinon.spy(),
   currencyOptionChange: sinon.spy(),
   savingsAmountChange: sinon.spy()

@@ -1,7 +1,7 @@
 import React from 'react'
 import App from './App'
 
-import initialState from '../constants/initialState'
+import { currenciesMock } from '../constants/initialState'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import chai, { expect } from 'chai'
@@ -13,15 +13,36 @@ it('renders without crashing', () => {
 })
 
 describe('Initial values', () => {
-  const wrapper = shallow(<App />)
-
   it('has the correct initial state', () => {
-    expect(wrapper.state()).to.deep.equal(initialState)
+    let fetchStub = sinon.stub(window, 'fetch')
+    let fakeResponse = {
+      json () {
+        return Promise.resolve({ data: currenciesMock })
+      }
+    }
+    fetchStub.resolves(fakeResponse)
+
+    const wrapper = shallow(<App />)
+    return wrapper.instance().componentDidMount().then(() => {
+      let state = wrapper.state()
+      expect(state.interestRate).to.be.a('number')
+      expect(state.interestRate).to.equal(0)
+      expect(state.savingsAmount).to.be.a('number')
+      expect(state.savingsAmount).to.equal(0)
+      expect(state.currencies).to.be.an('array')
+      expect(state.currencies).not.to.be.empty()
+      expect(state.selectedCurrency).to.be.an('object')
+      expect(state.selectedCurrency).to.deep.equal(currenciesMock[0])
+    })
   })
 })
 
 describe('Output', () => {
   const wrapper = shallow(<App />)
+  wrapper.setState({
+    currencies: currenciesMock,
+    selectedCurrency: currenciesMock[0]
+  })
   wrapper.instance().savingsAmountChange({ target: { value: 1200 } })
   wrapper.instance().interestRateChange({ target: { value: 10 } })
   wrapper.instance().currencyOptionChange({ target: { value: 'USD' } })
@@ -146,10 +167,14 @@ describe('Functions', () => {
   describe('currencyOptionChange', () => {
     let wrapper = shallow(<App />)
     let event = { target: { value: 'USD' } }
+    wrapper.setState({
+      currencies: currenciesMock,
+      selectedCurrency: currenciesMock[0]
+    })
 
     it('updates the selectedCurrencyId state with the new value', () => {
       wrapper.instance().currencyOptionChange(event)
-      expect(wrapper.state('selectedCurrencyId')).to.equal('USD')
+      expect(wrapper.state('selectedCurrency').id).to.equal('USD')
     })
   })
 })

@@ -1,13 +1,13 @@
 import React from 'react'
 import Results from './Results'
 
-import initialState from '../constants/initialState'
+import { currenciesMock } from '../constants/initialState'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
 const props = {
   earnedPA: 240,
-  selectedCurrency: Object.assign({}, initialState.currencies[0])
+  selectedCurrency: Object.assign({}, currenciesMock[0])
 }
 
 describe('Output', () => {
