@@ -16,7 +16,11 @@ const CurrencyGroup = props => {
       </ControlLabel>
       <InputGroup>
         <InputGroup.Addon>£</InputGroup.Addon>
-        <FormControl type="text" readOnly={props.readOnly} />
+        <FormControl
+          type="text"
+          value={props.value}
+          readOnly={props.readOnly}
+        />
         <InputGroup.Addon>
           <Glyphicon glyph="arrow-right" />
         </InputGroup.Addon>
@@ -27,6 +31,7 @@ const CurrencyGroup = props => {
 }
 
 CurrencyGroup.propTypes = {
+  value: PropTypes.number.isRequired,
   scope: PropTypes.string,
   labelText: PropTypes.string,
   readOnly: PropTypes.bool
