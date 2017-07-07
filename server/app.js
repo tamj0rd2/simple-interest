@@ -1,12 +1,12 @@
 var express = require('express')
 var path = require('path')
 var logger = require('morgan')
-var users = require('./routes/users')
+var routes = require('./routes')
 var app = express()
 
 app.use(logger('dev'))
 app.use('/', express.static(path.join(__dirname, '../', 'build')))
-app.use('/users', users)
+app.use('/api', routes.api)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
