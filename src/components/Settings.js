@@ -18,7 +18,11 @@ const Settings = props => {
           <FormGroup>
             <ControlLabel>Interest Rate *</ControlLabel>
             <InputGroup>
-              <FormControl type="text" value={props.interestRate} />
+              <FormControl
+                type="text"
+                value={props.interestRate}
+                onChange={props.interestRateChange}
+              />
               <InputGroup.Addon>%</InputGroup.Addon>
             </InputGroup>
           </FormGroup>
@@ -58,6 +62,7 @@ Settings.propTypes = {
   savingsAmount: PropTypes.number.isRequired,
   currencies: PropTypes.array.isRequired,
   selectedCurrency: PropTypes.object.isRequired,
+  interestRateChange: PropTypes.func.isRequired,
   savingsAmountChange: PropTypes.func.isRequired
 }
 

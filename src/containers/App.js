@@ -31,6 +31,12 @@ class App extends Component {
     }
   }
 
+  interestRateChange = e => {
+    if (this.isValid(e.target.value)) {
+      this.setState({ interestRate: parseFloat(e.target.value) || 0 })
+    }
+  }
+
   render () {
     let earnedPA = this.state.savingsAmount * (this.state.interestRate / 100)
     let selectedCurrency = this.state.currencies.find(
@@ -45,6 +51,7 @@ class App extends Component {
           currencies={this.state.currencies}
           selectedCurrency={selectedCurrency}
           savingsAmountChange={this.savingsAmountChange}
+          interestRateChange={this.interestRateChange}
         />
         <Results earnedPA={earnedPA} selectedCurrency={selectedCurrency} />
       </form>
