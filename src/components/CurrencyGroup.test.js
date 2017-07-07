@@ -1,6 +1,7 @@
 import React from 'react'
 import CurrencyGroup from './CurrencyGroup'
 
+import sinon from 'sinon'
 import { shallow } from 'enzyme'
 import chai, { expect } from 'chai'
 import dirtyChai from 'dirty-chai'
@@ -62,6 +63,17 @@ describe('Output', () => {
       let wrapper = shallow(<CurrencyGroup {...props} />)
       let firstFormControl = wrapper.find('FormControl').first()
       expect(firstFormControl.prop('readOnly')).to.be.undefined()
+    })
+  })
+})
+
+describe('Events', () => {
+  describe('when the first FormControl triggers a change event', () => {
+    it('calls the function defined as the onChange prop', () => {
+      let onChange = sinon.spy()
+      let wrapper = shallow(<CurrencyGroup {...props} onChange={onChange} />)
+      wrapper.find('FormControl').first().simulate('change')
+      expect(onChange.calledOnce).to.be.true()
     })
   })
 })
