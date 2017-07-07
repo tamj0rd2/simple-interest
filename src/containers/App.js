@@ -37,6 +37,10 @@ class App extends Component {
     }
   }
 
+  currencyOptionChange = e => {
+    this.setState({ selectedCurrencyId: e.target.value })
+  }
+
   render () {
     let earnedPA = this.state.savingsAmount * (this.state.interestRate / 100)
     let selectedCurrency = this.state.currencies.find(
@@ -52,6 +56,7 @@ class App extends Component {
           selectedCurrency={selectedCurrency}
           savingsAmountChange={this.savingsAmountChange}
           interestRateChange={this.interestRateChange}
+          currencyOptionChange={this.currencyOptionChange}
         />
         <Results earnedPA={earnedPA} selectedCurrency={selectedCurrency} />
       </form>

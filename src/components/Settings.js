@@ -33,6 +33,7 @@ const Settings = props => {
             <FormControl
               componentClass="select"
               value={props.selectedCurrency.id}
+              onChange={props.currencyOptionChange}
             >
               {props.currencies.map(currency => {
                 let text = `${currency.id} ( ${currency.symbol} )`
@@ -63,6 +64,7 @@ Settings.propTypes = {
   currencies: PropTypes.array.isRequired,
   selectedCurrency: PropTypes.object.isRequired,
   interestRateChange: PropTypes.func.isRequired,
+  currencyOptionChange: PropTypes.func.isRequired,
   savingsAmountChange: PropTypes.func.isRequired
 }
 
