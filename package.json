@@ -14,6 +14,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.4",
+    "debug": "^2.6.8",
     "dotenv": "4.0.0",
     "eslint": "3.19.0",
     "eslint-config-react-app": "^1.0.5",
@@ -22,11 +23,13 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
     "eslint-plugin-react": "7.1.0",
+    "express": "^4.15.3",
     "extract-text-webpack-plugin": "2.1.2",
     "file-loader": "0.11.2",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "morgan": "^1.8.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.6",
@@ -45,12 +48,18 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node client/scripts/start.js",
+    "heroku-prebuild": "yarn build",
+    "start": "node ./server/bin/www",
+    "server": "PORT=3001 DEBUG=coding-challenge:* nodemon --watch server --watch build yarn start",
+    "client": "node client/scripts/start.js",
+    "dev": "concurrently -k -n \"server,client\" \"yarn run server\" \"yarn run client\"",
     "build": "node client/scripts/build.js",
-    "test": "node client/scripts/test.js --env=jsdom --config=jest.json"
+    "test": "node client/scripts/test.js --env=jsdom --config=jest.json",
+    "test:coverage": "yarn test -- --coverage"
   },
   "devDependencies": {
     "chai": "^4.0.2",
+    "concurrently": "^3.5.0",
     "dirty-chai": "^2.0.0",
     "enzyme": "^2.9.1",
     "eslint-config-standard": "^10.2.1",
@@ -59,16 +68,16 @@
     "eslint-plugin-standard": "^3.0.1",
     "jest-css": "^1.0.1",
     "jest-file": "^1.0.0",
+    "nodemon": "^1.11.0",
     "prop-types": "^15.5.10",
     "react-test-renderer": "^15.6.1",
     "sinon": "^2.3.6"
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
   "eslintConfig": {
-    "extends": "react-app"
-  }
+    "extends": ["react-app", "standard"]
+  },
+  "proxy": "http://localhost:3001"
 }
