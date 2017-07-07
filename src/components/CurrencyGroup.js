@@ -24,7 +24,11 @@ const CurrencyGroup = props => {
         <InputGroup.Addon>
           <Glyphicon glyph="arrow-right" />
         </InputGroup.Addon>
-        <FormControl type="text" value="$convertedValue" readOnly />
+        <FormControl
+          type="text"
+          value={`${props.currencySymbol} ${props.value * props.exchangeRate}`}
+          readOnly
+        />
       </InputGroup>
     </FormGroup>
   )
@@ -34,7 +38,9 @@ CurrencyGroup.propTypes = {
   value: PropTypes.number.isRequired,
   scope: PropTypes.string,
   labelText: PropTypes.string,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  exchangeRate: PropTypes.number.isRequired,
+  currencySymbol: PropTypes.string.isRequired
 }
 
 export default CurrencyGroup

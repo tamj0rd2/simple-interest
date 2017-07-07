@@ -17,20 +17,24 @@ class App extends Component {
         rate: 1.293
       }
     ],
-    exchangeRate: 1
+    selectedCurrencyId: 'GBP'
   }
 
   render () {
     let earnedPA = this.state.savingsAmount * (this.state.interestRate / 100)
+    let selectedCurrency = this.state.currencies.find(
+      currency => currency.id === this.state.selectedCurrencyId
+    )
+
     return (
       <form className="container">
         <Settings
           interestRate={this.state.interestRate}
           savingsAmount={this.state.savingsAmount}
           currencies={this.state.currencies}
-          exchangeRate={this.state.exchangeRate}
+          selectedCurrency={selectedCurrency}
         />
-        <Results earnedPA={earnedPA} />
+        <Results earnedPA={earnedPA} selectedCurrency={selectedCurrency} />
       </form>
     )
   }

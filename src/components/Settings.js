@@ -26,11 +26,14 @@ const Settings = props => {
         <Col sm={6}>
           <FormGroup>
             <ControlLabel>Currency to convert amounts to:</ControlLabel>
-            <FormControl componentClass="select" value={props.exchangeRate}>
+            <FormControl
+              componentClass="select"
+              value={props.selectedCurrency.id}
+            >
               {props.currencies.map(currency => {
                 let text = `${currency.id} ( ${currency.symbol} )`
                 return (
-                  <option value={currency.rate} key={currency.id}>
+                  <option value={currency.id} key={currency.id}>
                     {text}
                   </option>
                 )
@@ -39,7 +42,12 @@ const Settings = props => {
           </FormGroup>
         </Col>
       </Row>
-      <CurrencyGroup labelText="Savings Amount *" value={props.savingsAmount} />
+      <CurrencyGroup
+        labelText="Savings Amount *"
+        value={props.savingsAmount}
+        exchangeRate={props.selectedCurrency.rate}
+        currencySymbol={props.selectedCurrency.symbol}
+      />
     </div>
   )
 }
@@ -48,7 +56,7 @@ Settings.propTypes = {
   interestRate: PropTypes.number.isRequired,
   savingsAmount: PropTypes.number.isRequired,
   currencies: PropTypes.array.isRequired,
-  exchangeRate: PropTypes.number.isRequired
+  selectedCurrency: PropTypes.object.isRequired
 }
 
 export default Settings
