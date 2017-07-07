@@ -9,6 +9,8 @@ import {
 } from 'react-bootstrap'
 
 const CurrencyGroup = props => {
+  let currencyConverted = props.value * props.exchangeRate
+
   return (
     <FormGroup>
       <ControlLabel>
@@ -18,7 +20,7 @@ const CurrencyGroup = props => {
         <InputGroup.Addon>£</InputGroup.Addon>
         <FormControl
           type="text"
-          value={props.value}
+          value={props.readOnly ? props.value.toFixed(2) : props.value}
           onChange={props.onChange}
           readOnly={props.readOnly}
         />
@@ -27,7 +29,7 @@ const CurrencyGroup = props => {
         </InputGroup.Addon>
         <FormControl
           type="text"
-          value={`${props.currencySymbol} ${props.value * props.exchangeRate}`}
+          value={`${props.currencySymbol} ${currencyConverted.toFixed(2)}`}
           readOnly
         />
       </InputGroup>

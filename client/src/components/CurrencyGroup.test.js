@@ -26,7 +26,7 @@ describe('Output', () => {
 
   it('renders a FormControl with the currency symbol and converted amount', () => {
     let wrapper = shallow(<CurrencyGroup {...props} />)
-    expect(wrapper.find('FormControl[value="$ 200"]')).to.have.length(1)
+    expect(wrapper.find('FormControl[value="$ 200.00"]')).to.have.length(1)
   })
 
   describe('when the labelText prop is provided', () => {
