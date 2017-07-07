@@ -17,18 +17,18 @@ class App extends Component {
 
   isValid (newValue) {
     // returns true if the value is a number/float
-    return /^\d+$/.test(newValue) || newValue === ''
+    return /^\d+\.?\d{0,2}$/.test(newValue) || newValue === ''
   }
 
   savingsAmountChange = e => {
     if (this.isValid(e.target.value)) {
-      this.setState({ savingsAmount: parseFloat(e.target.value) || 0 })
+      this.setState({ savingsAmount: e.target.value })
     }
   }
 
   interestRateChange = e => {
     if (this.isValid(e.target.value)) {
-      this.setState({ interestRate: parseFloat(e.target.value) || 0 })
+      this.setState({ interestRate: e.target.value })
     }
   }
 

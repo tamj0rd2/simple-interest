@@ -8,7 +8,7 @@ import dirtyChai from 'dirty-chai'
 chai.use(dirtyChai)
 
 const props = {
-  value: 100,
+  value: '100',
   currencySymbol: '$',
   exchangeRate: 2
 }
@@ -21,7 +21,7 @@ describe('Output', () => {
 
   it('renders a FormControl with the currency symbol and the amount', () => {
     let wrapper = shallow(<CurrencyGroup {...props} />)
-    expect(wrapper.find('FormControl[value=100]')).to.have.length(1)
+    expect(wrapper.find('FormControl[value="100"]')).to.have.length(1)
   })
 
   it('renders a FormControl with the currency symbol and converted amount', () => {

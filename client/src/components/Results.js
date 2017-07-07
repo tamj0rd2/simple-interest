@@ -7,14 +7,14 @@ const Results = props => {
     <div>
       <CurrencyGroup
         scope="month"
-        value={props.earnedPA / 12}
+        value={(props.earnedPA / 12).toFixed(2).toString()}
         exchangeRate={props.selectedCurrency.rate}
         currencySymbol={props.selectedCurrency.symbol}
         readOnly
       />
       <CurrencyGroup
         scope="year"
-        value={props.earnedPA}
+        value={props.earnedPA.toFixed(2).toString()}
         exchangeRate={props.selectedCurrency.rate}
         currencySymbol={props.selectedCurrency.symbol}
         readOnly

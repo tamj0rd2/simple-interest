@@ -1,6 +1,6 @@
 export default {
-  interestRate: 0,
-  savingsAmount: 0,
+  interestRate: '',
+  savingsAmount: '',
   currencies: [],
   selectedCurrency: {
     id: 'default',

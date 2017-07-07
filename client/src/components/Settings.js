@@ -59,8 +59,8 @@ const Settings = props => {
 }
 
 Settings.propTypes = {
-  interestRate: PropTypes.number.isRequired,
-  savingsAmount: PropTypes.number.isRequired,
+  interestRate: PropTypes.string.isRequired,
+  savingsAmount: PropTypes.string.isRequired,
   currencies: PropTypes.array.isRequired,
   selectedCurrency: PropTypes.object.isRequired,
   interestRateChange: PropTypes.func.isRequired,

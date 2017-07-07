@@ -9,8 +9,8 @@ import dirtyChai from 'dirty-chai'
 chai.use(dirtyChai)
 
 const props = {
-  interestRate: 10,
-  savingsAmount: 1000,
+  interestRate: '10',
+  savingsAmount: '1000',
   currencies: [].concat(currenciesMock),
   selectedCurrency: currenciesMock[0],
   interestRateChange: sinon.spy(),
